@@ -19,7 +19,12 @@ const App: React.FC = () => {
     setTodos((prevTodos) => {
       const updatedTodos = [
         ...prevTodos,
-        { id: Math.random().toString(), text: text, timer: timer }
+        {
+          id: Math.random().toString(),
+          text: text,
+          timer: timer,
+          isCompleted: false
+        } // 更新
       ];
       window.localStorage.setItem("todos", JSON.stringify(updatedTodos));
       return updatedTodos;
@@ -48,6 +53,16 @@ const App: React.FC = () => {
     });
   };
 
+  const todoCompleteHandler = (todoId: string) => {
+    setTodos((prevTodos) => {
+      const updatedTodos = prevTodos.map((todo) =>
+        todo.id === todoId ? { ...todo, isCompleted: true } : todo
+      );
+      window.localStorage.setItem("todos", JSON.stringify(updatedTodos));
+      return updatedTodos;
+    });
+  };
+
   return (
     <div className="App">
       <NewTodo onAddTodo={todoAddHandler} />
@@ -55,6 +70,7 @@ const App: React.FC = () => {
         items={todos}
         onDeleteTodo={todoDeleteHandler}
         onUpdateTodo={todoUpdateHandler}
+        onCompleteTodo={todoCompleteHandler} // Pass the handler function
       />
     </div>
   );
