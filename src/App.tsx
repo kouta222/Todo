@@ -3,6 +3,7 @@ import TodoList from "./components/Todo/TodoList";
 import NewTodo from "./components/NewTodo/Newtodo";
 import { Todo } from "./models/todo.model";
 
+// ローカルストレージ
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
@@ -13,6 +14,7 @@ const App: React.FC = () => {
     }
   }, []);
 
+  // Todoの追加
   const todoAddHandler = (text: string, timer: number) => {
     setTodos((prevTodos) => {
       const updatedTodos = [

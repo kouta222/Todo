@@ -1,36 +1,53 @@
-import React, { useRef } from "react";
-import "./NewTodo.css";
+import React, { useState } from "react";
 
-type NewTodoProps = {
+interface NewTodoProps {
   onAddTodo: (text: string, timer: number) => void;
-};
+}
 
 const NewTodo: React.FC<NewTodoProps> = (props) => {
-  const textInputRef = useRef<HTMLInputElement>(null);
-  const timerInputRef = useRef<HTMLInputElement>(null);
+  const [enteredText, setEnteredText] = useState("");
+  const [enteredHours, setEnteredHours] = useState(0);
+  const [enteredMinutes, setEnteredMinutes] = useState(0);
 
   const todoSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    const enteredTimer = timerInputRef.current!.value;
-
-    const enteredTimerNumber = Number(enteredTimer);
-    if (isNaN(enteredTimerNumber)) {
-      return;
-    }
-
-    props.onAddTodo(enteredText, enteredTimerNumber);
+    const timer = enteredHours * 60 + enteredMinutes;
+    props.onAddTodo(enteredText, timer);
+    setEnteredText("");
+    setEnteredHours(0);
+    setEnteredMinutes(0);
   };
 
   return (
     <form onSubmit={todoSubmitHandler}>
-      <div className="form-control">
-        <label htmlFor="todo-text">Todo内容</label>
-        <input type="text" id="todo-text" ref={textInputRef} />
-        <label htmlFor="todo-timer">作業時間</label>
-        <input type="number" id="todo-timer" ref={timerInputRef} />
+      <div>
+        <label htmlFor="text">Todoテキスト</label>
+        <input
+          type="text"
+          id="text"
+          value={enteredText}
+          onChange={(event) => setEnteredText(event.target.value)}
+        />
       </div>
-      <button type="submit">Todo追加</button>
+      <div>
+        <label htmlFor="hours">時間</label>
+        <input
+          type="number"
+          id="hours"
+          value={enteredHours}
+          onChange={(event) => setEnteredHours(+event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="minutes">分</label>
+        <input
+          type="number"
+          id="minutes"
+          value={enteredMinutes}
+          onChange={(event) => setEnteredMinutes(+event.target.value)}
+        />
+      </div>
+      <button type="submit">TODOを追加</button>
     </form>
   );
 };

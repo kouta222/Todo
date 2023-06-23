@@ -1,12 +1,10 @@
-// TodoList.tsx
-
 import React from "react";
 import TodoItem from "../TodoItem/TodoItem";
 
 interface TodoListProps {
   items: { id: string; text: string; timer: number }[];
   onDeleteTodo: (id: string) => void;
-  onUpdateTodo: (todoId: string, newText: string, newTimer: number) => void;
+  onUpdateTodo: (id: string, newText: string, newTimer: number) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = (props) => {
