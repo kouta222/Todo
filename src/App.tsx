@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./components/Todo/TodoList";
 import NewTodo from "./components/NewTodo/Newtodo";
+import ChatComponent from "./components/api/chatApi";
 import { Todo } from "./models/todo.model";
+import Header from "./components/header/header";
 
 // ローカルストレージ
 const App: React.FC = () => {
@@ -65,6 +67,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Header />
       <NewTodo onAddTodo={todoAddHandler} />
       <TodoList
         items={todos}
@@ -72,6 +75,7 @@ const App: React.FC = () => {
         onUpdateTodo={todoUpdateHandler}
         onCompleteTodo={todoCompleteHandler} // Pass the handler function
       />
+      <ChatComponent />
     </div>
   );
 };

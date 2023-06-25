@@ -10,7 +10,7 @@ interface TodoItemProps {
     newHours: number,
     newMinutes: number
   ) => void;
-  onCompleteTodo: (id: string) => void; // この行を追加
+  onCompleteTodo: (id: string) => void; // complete関数
 }
 
 const TodoItem: React.FC<TodoItemProps> = (props) => {

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import TodoItem from "../TodoItem/TodoItem";
+import "./TodoList (11).css";
 
 interface TodoListProps {
   items: { id: string; text: string; timer: number; isCompleted: boolean }[];

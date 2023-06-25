@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./NewTodo.css";
+import Button from "@mui/material/Button";
 
 interface NewTodoProps {
   onAddTodo: (text: string, timer: number) => void;
@@ -47,7 +49,9 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
           onChange={(event) => setEnteredMinutes(+event.target.value)}
         />
       </div>
-      <button type="submit">TODOを追加</button>
+      <Button variant="contained" type="submit">
+        Todoを追加
+      </Button>
     </form>
   );
 };
