@@ -4,13 +4,20 @@ import Timer from "../Timer/Timer";
 interface TodoItemProps {
   item: { id: string; text: string; timer: number };
   onDeleteTodo: (id: string) => void;
-  onUpdateTodo: (id: string, newText: string, newTimer: number) => void;
+  onUpdateTodo: (
+    todoId: string,
+    newText: string,
+    newHours: number,
+    newMinutes: number
+  ) => void;
+  onCompleteTodo: (id: string) => void; // complete関数
 }
 
 const TodoItem: React.FC<TodoItemProps> = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(props.item.text);
-  const [editTimer, setEditTimer] = useState(props.item.timer);
+  const [editHours, setEditHours] = useState(Math.floor(props.item.timer / 60)); // convert minutes to hours
+  const [editMinutes, setEditMinutes] = useState(props.item.timer % 60); // get the remaining minutes
 
   return (
     <li key={props.item.id}>
@@ -23,12 +30,24 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
           />
           <input
             type="number"
-            value={editTimer}
-            onChange={(event) => setEditTimer(Number(event.target.value))}
+            value={editHours}
+            onChange={(event) => setEditHours(Number(event.target.value))}
+            placeholder="Hours"
+          />
+          <input
+            type="number"
+            value={editMinutes}
+            onChange={(event) => setEditMinutes(Number(event.target.value))}
+            placeholder="Minutes"
           />
           <button
             onClick={() => {
-              props.onUpdateTodo(props.item.id, editText, editTimer);
+              props.onUpdateTodo(
+                props.item.id,
+                editText,
+                editHours,
+                editMinutes
+              );
               setIsEditing(false);
             }}
           >
@@ -38,7 +57,10 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
       ) : (
         <>
           <span>{props.item.text}</span>
-          <Timer initialTime={props.item.timer} />
+          <Timer
+            initialTime={props.item.timer}
+            onComplete={props.onDeleteTodo.bind(null, props.item.id)}
+          />
           <button onClick={() => setIsEditing(true)}>編集</button>
           <button onClick={props.onDeleteTodo.bind(null, props.item.id)}>
             削除
