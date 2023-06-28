@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import TodoList from "./components/Todo/TodoList";
 import NewTodo from "./components/NewTodo/Newtodo";
 import ChatComponent from "./components/api/chatApi";
+import MemoComponent from "./components/Memo/MemoComponent";
 import { Todo } from "./models/todo.model";
 import Header from "./components/header/header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // ローカルストレージ
 const App: React.FC = () => {
@@ -66,17 +68,36 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <Header />
-      <NewTodo onAddTodo={todoAddHandler} />
-      <TodoList
-        items={todos}
-        onDeleteTodo={todoDeleteHandler}
-        onUpdateTodo={todoUpdateHandler}
-        onCompleteTodo={todoCompleteHandler} // Pass the handler function
-      />
-      <ChatComponent />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <NewTodo onAddTodo={todoAddHandler} />
+                <TodoList
+                  items={todos}
+                  onDeleteTodo={todoDeleteHandler}
+                  onUpdateTodo={todoUpdateHandler}
+                  onCompleteTodo={todoCompleteHandler}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/chat-memo"
+            element={
+              <>
+                <ChatComponent />
+                <MemoComponent />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
