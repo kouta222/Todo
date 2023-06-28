@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { TextField, Button, List, ListItem } from "@mui/material";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+  onSnapshot,
+  query,
+  orderBy
+} from "firebase/firestore";
+import DeleteMemo from "./DeleteMemo";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAjbUmUPHpnl3-H73Zv58v-G1fDmp561zE",
@@ -12,44 +22,62 @@ const firebaseConfig = {
   measurementId: "G-RW5G4B4W8G"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-
-const db = getFirestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const MemoComponent: React.FC = () => {
   const [memo, setMemo] = useState("");
   const [memos, setMemos] = useState<any[]>([]);
 
-  //   ここのコードわからない
   useEffect(() => {
-    db.collection("memos").onSnapshot((snapshot) => {
-      const memoData: any[] = [];
-      snapshot.forEach((doc) => memosData.push({ ...doc.data(), id: doc.id }));
-      setMemos(memoData);
+    const q = query(collection(db, "memos"), orderBy("createdAt"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const memosData: any[] = [];
+      querySnapshot.forEach((doc) => {
+        memosData.push({ ...doc.data(), id: doc.id });
+      });
+      setMemos(memosData);
     });
-  }, []);
+
+    // Clean up function
+    return () => unsubscribe();
+  }, [db]);
 
   const addMemo = async () => {
-    await db.collection("memos").add({
-      content: memo,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    setMemo("");
+    try {
+      await addDoc(collection(db, "memos"), {
+        content: memo,
+        createdAt: serverTimestamp()
+      });
+      setMemo("");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   return (
     <div>
-      <input
-        type="text"
+      <TextField
+        id="outlined-multiline-static"
+        label="新しいめも"
+        multiline
+        rows={4}
         value={memo}
+        variant="outlined"
+        fullWidth
         onChange={(e) => setMemo(e.target.value)}
       />
-      <button onClick={addMemo}>メモを追加</button>
-      {memos.map((memo) => (
-        <div key={memo.id}>
-          <p>{memo.content}</p>
-        </div>
-      ))}
+      <Button variant="contained" color="primary" onClick={addMemo}>
+        メモを追加
+      </Button>
+      <List>
+        {memos.map((memo) => (
+          <ListItem key={memo.id}>
+            {memo.content}
+            <DeleteMemo memoId={memo.id} />
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 };
