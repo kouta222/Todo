@@ -1,4 +1,5 @@
 // Timer.tsx
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 interface TimerProps {
@@ -46,9 +47,9 @@ const Timer: React.FC<TimerProps> = ({ initialTime, onComplete }) => {
       <span>
         {minutes}分{seconds < 10 ? `0${seconds}` : seconds}秒
       </span>
-      <button onClick={() => setTimerPaused(!timerPaused)}>
+      <Button color="primary" onClick={() => setTimerPaused(!timerPaused)}>
         {timerPaused ? "開始" : "一時停止"}
-      </button>
+      </Button>
     </div>
   );
 };

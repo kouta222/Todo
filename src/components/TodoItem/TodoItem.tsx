@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Timer from "../Timer/Timer";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import { Button, List, ListItem } from "@mui/material";
 
 interface TodoItemProps {
   item: { id: string; text: string; timer: number };
@@ -40,7 +43,8 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
             onChange={(event) => setEditMinutes(Number(event.target.value))}
             placeholder="Minutes"
           />
-          <button
+          <Button
+            color="primary"
             onClick={() => {
               props.onUpdateTodo(
                 props.item.id,
@@ -52,7 +56,7 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
             }}
           >
             更新
-          </button>
+          </Button>
         </>
       ) : (
         <>
@@ -61,10 +65,15 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
             initialTime={props.item.timer}
             onComplete={props.onDeleteTodo.bind(null, props.item.id)}
           />
-          <button onClick={() => setIsEditing(true)}>編集</button>
-          <button onClick={props.onDeleteTodo.bind(null, props.item.id)}>
+          <Button color="primary" onClick={() => setIsEditing(true)}>
+            編集
+          </Button>
+          <Button
+            color="primary"
+            onClick={props.onDeleteTodo.bind(null, props.item.id)}
+          >
             削除
-          </button>
+          </Button>
         </>
       )}
     </li>
