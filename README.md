@@ -42,12 +42,12 @@ URL：：準備中
 
 ## 使用技術
 フロントエンド<br>
-HTML/CSS、Typescript<br>
+HTML/CSS、TypeScript<br>
 フレームワーク<br>
 React,MUI<br>
 
 インフラ・開発環境<br>
-firebase,firebaseCLI,AWS(EC2)<br><br>
+firebase,AWS(EC2)<br>Github Actions（実装中）<br>
 
 ## 機能一覧
 ・Todo登録、削除、更新、一時停止<br>
