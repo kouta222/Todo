@@ -1,17 +1,18 @@
-6/20 作成開始
+6/20 作成開始　（未完成）
 
-React TypeScriptの練習のために作成中
+React TypeScriptの練習のために作成中。
+使用イメージは画面分割で使います。
 
 
 
 # 概要
 ## タイトル
-<strong>Todo App</strong>
+<strong>今日のTodo</strong>
 
 <br>
 
 ## どんなサイトか
-１日のTodoをタイマーで管理してくれます。
+今日のTodoをタイマーで管理してくれます。
 
 <img width="760" alt="スクリーンショット 2023-06-29 18 04 34" src="https://github.com/kouta222/Todo/assets/124219242/85294b62-46db-422d-8fd8-b20133e034ee">
 
@@ -24,56 +25,41 @@ React TypeScriptの練習のために作成中
 
 URL：：準備中
 
-<br>
-ヘッダーにあるゲストログインを押せば、会員登録なしでもログインが可能です。<br>
+<br><br>
 
 ## 何ができるのか
-過去問を持っている人が出品をして、欲しい人が購入することができます。
+今日のTodoをタイマーで管理することができます。
+
 <br>
 ## なぜ作ろうと思ったのか
-わたしが、大学の期末テストの時に過去問がなかなか手に入らずに対策に困った経験があったことから、このアプリを考えました。<br>
-わたし以外にも、多くの人が同じ経験をしてたので実際に事業化してみようとしました。<br>
-ですが過去問には著作権があるため、営利目的には使用することができず、事業にすることはできませんでした。<br>
+１日にやらなくてはいけないことが多く、効率よく管理したいという気持ちがあり、タイマー付きのTodoアプリが欲しいと考えました。
+調べたところ、使い勝手の良いアプリはあまりなかったので、自身で作っています。
 <br>
-ビジネスプラン：：https://docs.google.com/document/d/1h7t3MtqFBvA84UoVE3RgS0ue-dkz_XBdwFpsuk7e5oQ/edit?usp=sharing
+
+<br>
+
 
 
 ## 使用技術
 フロントエンド<br>
-HTML/CSS、Boostrap<br>
-javascript<br><br>
-
-バックエンド<br>
-PHP<br>
-Laravel Framework 9.52.4<br>
+HTML/CSS、Typescript<br>
+フレームワーク<br>
+React,MUI<br>
 
 インフラ・開発環境<br>
-MySQL、github、heroku、xampp<br><br>
-
-テスト（学習中）<br>
-PHPunit<br><br>
+firebase,firebaseCLI,AWS(EC2)<br><br>
 
 ## 機能一覧
-・レスポンシブデザイン<br>
+・Todo登録、削除、更新、一時停止<br>
+・Todoはブラウザのローカルストレージで管理しています。
 
-・ユーザー登録、ログイン機能<br>
-・会員情報編集<br>
-・退会機能<br><br>
 
-・出品機能(herokuではテーブルを更新できないので、localでのみ出品できます。）<br>
-・商品編集、削除機能<br>
-・注文履歴確認機能<br>
-・商品購入機能<br>
-・クレジットカード登録機能（pay.jp)<br>
-・ページネーション機能<br>
-・送料機能<br>
-<br>
-・商品レビュー機能<br>
-・カート機能<br>
-・ソート機能<br>
-・お気に入り機能<br>
-・検索機能<br>
-・注文履歴機能<br><br>
+・<br>
+・ChatGPT　API機能<br><br>
+・メモ<br>
+・メモ削除機能<br>メモはfirebaseで管理しています。<br><br>
+・アラート機能（初めてアクセスした時、Todoが全て終わったタイミング）<br>
+
 
 
 ## 今後行うこと
