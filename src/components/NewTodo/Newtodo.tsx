@@ -23,7 +23,7 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
   return (
     <form onSubmit={todoSubmitHandler}>
       <div>
-        <label htmlFor="text">Todoテキスト</label>
+        <label htmlFor="text">Todo内容</label>
         <input
           type="text"
           id="text"
