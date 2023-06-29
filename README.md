@@ -42,7 +42,8 @@ URL：：準備中
 
 ## 使用技術
 フロントエンド<br>
-HTML/CSS、TypeScript<br>
+HTML/CSS、TypeScript<br><br>
+
 フレームワーク<br>
 React,MUI<br>
 
