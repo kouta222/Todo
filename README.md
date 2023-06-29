@@ -51,7 +51,7 @@ firebase,firebaseCLI,AWS(EC2)<br><br>
 
 ## 機能一覧
 ・Todo登録、削除、更新、一時停止<br>
-・Todoはブラウザのローカルストレージで管理しています。
+※Todoはブラウザのローカルストレージで管理しています。（今日のTodoを管理するため、永続的に保存する必要はない）
 
 
 ・<br>
@@ -63,8 +63,6 @@ firebase,firebaseCLI,AWS(EC2)<br><br>
 
 
 ## 今後行うこと
-マルチログインを搭載する予定です。<br>
-またdocker,AWSに移行中です。
-
-JAVAを学習していき、新しいアプリを作りたいです。
+・APIの追加
+・デザインetc
 
