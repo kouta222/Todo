@@ -13,6 +13,12 @@ React TypeScriptの練習のために作成中
 ## どんなサイトか
 １日のTodoをタイマーで管理してくれます。
 
+![Uploading スクリーンショット 2023-06-29 18.04.34.png…]()
+
+また、メモ機能・OpenAIのAPIを実装しているので、すぐに調べてメモすることができます。
+
+<img width="752" alt="スクリーンショット 2023-06-29 18 14 02" src="https://github.com/kouta222/Todo/assets/124219242/ad4b6581-d5c5-4af0-9103-1ceb4e61fae9">
+
 
 <br>
 
