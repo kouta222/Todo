@@ -1,0 +1,59 @@
+import React, { useState } from "react";
+import "./NewTodo.css";
+import Button from "@mui/material/Button";
+
+interface NewTodoProps {
+  onAddTodo: (text: string, timer: number) => void;
+}
+
+const NewTodo: React.FC<NewTodoProps> = (props) => {
+  const [enteredText, setEnteredText] = useState("");
+  const [enteredHours, setEnteredHours] = useState(0);
+  const [enteredMinutes, setEnteredMinutes] = useState(0);
+
+  const todoSubmitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    const timer = enteredHours * 60 + enteredMinutes;
+    props.onAddTodo(enteredText, timer);
+    setEnteredText("");
+    setEnteredHours(0);
+    setEnteredMinutes(0);
+  };
+
+  return (
+    <form onSubmit={todoSubmitHandler}>
+      <div>
+        <label htmlFor="text">Todo内容</label>
+        <input
+          type="text"
+          id="text"
+          value={enteredText}
+          onChange={(event) => setEnteredText(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="hours">時間</label>
+        <input
+          type="number"
+          id="hours"
+          value={enteredHours}
+          onChange={(event) => setEnteredHours(+event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="minutes">分</label>
+        <input
+          type="number"
+          id="minutes"
+          value={enteredMinutes}
+          onChange={(event) => setEnteredMinutes(+event.target.value)}
+        />
+      </div>
+      <Button variant="contained" type="submit">
+        Todoを追加
+      </Button>
+    </form>
+  );
+};
+
+export default NewTodo;
