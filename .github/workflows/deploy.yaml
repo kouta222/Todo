@@ -1,0 +1,25 @@
+name: Deploy to Firebase Hosting
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: 1//0eG87dKBvEf0ZCgYIARAAGA4SNwF-L9Iruscuwow9EqPCxGsgWrc6UbD0fvFEwh6FPKssH9H5rRrMdq5-4Ft6kjJMeCZQV9b507k
