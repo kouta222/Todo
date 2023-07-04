@@ -23,11 +23,11 @@ URL：：準備中
 <br>
 ## 使用技術
 フロントエンド<br>
-HTML/CSS、TypeScript<br><br>
+HTML/CSS、TypeScript（React)<br><br>
 フレームワーク<br>
-React,MUI<br>
+MUI<br>
 インフラ・開発環境<br>
-firebase,AWS(EC2)<br>Github Actions（実装中）<br>
+firebase<br>Github Actions（実装中）<br>
 ## 機能一覧
 ・Todo 登録、削除、更新、一時停止<br>
 ※Todo はブラウザのローカルストレージで管理しています。（今日の Todo を管理するため、永続的に保存する必要はない）
